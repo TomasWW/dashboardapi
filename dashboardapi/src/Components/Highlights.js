@@ -10,13 +10,16 @@ import SUNSET from "../assets/sunset.svg";
 const Card = styled.div`
   background-color: oldlace;
   border: 1px solid red;
-  width: 100%;
-  font-size: calc(5px + 2vmin);
+  font-size: calc(5px + 1vmin);
 `;
+
 const Box = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  grid-template-columns: repeat(3, 1fr); /* Divide en 3 columnas */
+  gap: 10px; /* Espacio entre las tarjetas */
+  width: 100%;
+  height: 100%;
+  
 `;
 export function Highlights({
   uvIndex,
@@ -29,6 +32,7 @@ export function Highlights({
 }) {
   return (
     <div>
+      <h3>Highlights</h3>
       <Box>
         <Card>
           <p>Indice UV </p>
