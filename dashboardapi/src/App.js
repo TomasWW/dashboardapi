@@ -24,6 +24,7 @@ function App() {
         />
       </DashboardClima>
       <DashboardTrafico>Datos de Trafico</DashboardTrafico>
+     
     </div>
   );
 }
