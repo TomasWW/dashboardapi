@@ -18,7 +18,7 @@ function App() {
           sunrise="6am"
           sunset="20pm"
           humidity="30"
-          visibility="Buena"
+          visibility="Baja"
           airQuality="105 Malo"
           windStatus="Fuertes"
         />

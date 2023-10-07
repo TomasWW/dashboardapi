@@ -1,25 +1,33 @@
 import { useState } from "react";
 import React from "react";
-import UVIMG from "../assets/uv-index-1.svg";
 import styled from "styled-components";
-import HUMIDITY from "../assets/humidity.svg";
-import WIND from "../assets/wind-beaufort-5.svg";
-import SUNRISE from "../assets/sunrise.svg";
+import { TbUvIndex } from "react-icons/tb";
+import { WiWindBeaufort5 } from "react-icons/wi";
+import { FiSunrise } from "react-icons/fi";
+import { FiSunset } from "react-icons/fi";
+import { WiHumidity } from "react-icons/wi";
+import { FcHighPriority } from "react-icons/fc";
 
-import SUNSET from "../assets/sunset.svg";
+import { BsFillCloudFogFill } from "react-icons/bs";
 const Card = styled.div`
   background-color: oldlace;
   border: 1px solid red;
-  font-size: calc(5px + 1vmin);
+  font-size: calc(15px + 1vmin);
 `;
 
 const Box = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Divide en 3 columnas */
+  padding-bottom: 10px;
+  grid-template-columns: repeat(6, 1fr);
   gap: 10px; /* Espacio entre las tarjetas */
   width: 100%;
   height: 100%;
+  text-align: center;
+  margin-bottom: 10px;
   
+`;
+const Title = styled.div`
+  font-size: large;
 `;
 export function Highlights({
   uvIndex,
@@ -32,46 +40,46 @@ export function Highlights({
 }) {
   return (
     <div>
-      <h3>Highlights</h3>
+      <h1>Highlights</h1>
       <Box>
         <Card>
-          <p>Indice UV </p>
+          <Title>Indice UV </Title>
+          <p> {uvIndex}</p>
+          <h2>
+            <TbUvIndex />
+          </h2>
+        </Card>
+        <Card>
+          <Title>Vientos</Title>
+          <p>{windStatus}</p>
+          <h2>
+            <WiWindBeaufort5 />
+          </h2>
+        </Card>
+        <Card>
+          <Title> Amanecer / Anocher</Title>
           <p>
-            {" "}
-            {uvIndex}
-            <img src={UVIMG} width="30" alt="uvIndex" />
+            {sunrise} <FiSunrise />
+          </p>
+          <p>
+            {sunset} <FiSunset />
           </p>
         </Card>
         <Card>
-          <p>Viento</p>
-          <p>
-            {windStatus}
-            <img src={WIND} width="30" alt="wind" />
-          </p>
+          <Title>Humedad</Title>
+          <h3>{humidity}
+            <WiHumidity />
+          </h3>
         </Card>
         <Card>
-          <p>
-            <img src={SUNRISE} alt="sunrise" width="30" /> {sunrise}
-          </p>
-          <p>
-            {" "}
-            <img src={SUNSET} alt="sunset" width="30" /> {sunset}
-          </p>
-        </Card>
-        <Card>
-          <p>Humedad </p>
-          <p>
-            {" "}
-            {humidity} <img src={HUMIDITY} width="30" alt="hum" />{" "}
-          </p>
-        </Card>
-        <Card>
-          <p>Visibilidad </p>
+          <Title>Visibilidad </Title>
           <p> {visibility}</p>
+          <BsFillCloudFogFill/>
         </Card>
         <Card>
-          <p>Calidad Aire </p>
+          <Title>Calidad Aire </Title>
           <p> {airQuality}</p>
+          <FcHighPriority />
         </Card>
       </Box>
     </div>
