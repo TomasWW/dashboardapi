@@ -3,19 +3,21 @@ import { Highlights } from "./Components/Highlights";
 import DashboardClima from "./Components/DashboardClima";
 import Thermometer from "./Components/Thermometer";
 import { TempMaxMin } from "./Components/TempMaxMin";
-import Example, { DailyTemp } from "./Components/DailyTemp";
+import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 
 function App() {
   return (
     <div className="App">
-      <DashboardClima>
-        <Thermometer />
+      <DashboardClima className="dashbordclima">
+        <Thermometer  className="therm"/>
 
-        <Example />
-        <TempMaxMin tempMax="18°C" tempMin="6°C" />
-        <Highlights
+        <DailyTemp  className="chart"/>
+        <TempMaxMin className="maxmin" tempMax="18°C" tempMin="6°C" />
+        <fot>
+        <Highlights 
           uvIndex="UV 1 "
+          
           sunrise="6am"
           sunset="20pm"
           humidity="30"
@@ -23,8 +25,9 @@ function App() {
           airQuality="105 Malo"
           windStatus="Fuertes"
         />
+        </fot>
       </DashboardClima>
-      <DashboardTrafico>Datos de Trafico</DashboardTrafico>
+      <DashboardTrafico>Datos de Tráfico</DashboardTrafico>
     </div>
   );
 }

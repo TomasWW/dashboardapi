@@ -11,23 +11,24 @@ import { FcHighPriority } from "react-icons/fc";
 import { BsFillCloudFogFill } from "react-icons/bs";
 const Card = styled.div`
   background-color: #c2948a;
-  border: 1px solid red;
-  font-size: calc(15px + 1vmin);
+  border: 1px solid #7ea8be;
+  font-size: calc(5px + 1vmin);
 `;
 
 const Box = styled.div`
   display: grid;
-  padding-bottom: 10px;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px; /* Espacio entre las tarjetas */
+  gap: 10px;
   width: 100%;
   height: 100%;
   text-align: center;
-  margin-bottom: 10px;
   
 `;
 const Title = styled.div`
   font-size: large;
+`;
+const H3 = styled.h3`
+  margin: auto;
 `;
 export function Highlights({
   uvIndex,
@@ -39,8 +40,8 @@ export function Highlights({
   airQuality,
 }) {
   return (
-    <div>
-      <h1>Highlights</h1>
+    <>
+      <H3>Highlights</H3>
       <Box>
         <Card>
           <Title>Indice UV </Title>
@@ -67,14 +68,15 @@ export function Highlights({
         </Card>
         <Card>
           <Title>Humedad</Title>
-          <h3>{humidity}
+          <h3>
+            {humidity}
             <WiHumidity />
           </h3>
         </Card>
         <Card>
           <Title>Visibilidad </Title>
           <p> {visibility}</p>
-          <BsFillCloudFogFill/>
+          <BsFillCloudFogFill />
         </Card>
         <Card>
           <Title>Calidad Aire </Title>
@@ -82,6 +84,6 @@ export function Highlights({
           <FcHighPriority />
         </Card>
       </Box>
-    </div>
+    </>
   );
 }

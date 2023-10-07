@@ -6,6 +6,7 @@ const MainFrame = styled.div`
   height: 200px;
   text-align: center;
   position: relative;
+
   > div:first-child {
     border: 1px solid #ababab;
     position: relative;

@@ -8,12 +8,13 @@ const MaxMin = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  font-size: calc(15px + 1vmin);
-  border: 1px solid black;
+  font-size: calc(5px + 1vmin);
+  border: 1px solid #7ea8be;
   background-color: #c2948a;
   width: 50%;
-  
+  max-height: 100%;
   align-items: center;
+  
 `;
 
 export function TempMaxMin({ tempMax, tempMin }) {
