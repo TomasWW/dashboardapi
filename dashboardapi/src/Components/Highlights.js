@@ -10,7 +10,7 @@ import { FcHighPriority } from "react-icons/fc";
 
 import { BsFillCloudFogFill } from "react-icons/bs";
 const Card = styled.div`
-  background-color: oldlace;
+  background-color: #c2948a;
   border: 1px solid red;
   font-size: calc(15px + 1vmin);
 `;

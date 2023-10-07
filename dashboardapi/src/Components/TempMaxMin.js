@@ -10,7 +10,7 @@ const MaxMin = styled.div`
   flex-direction: column;
   font-size: calc(15px + 1vmin);
   border: 1px solid black;
-  background-color: whitesmoke;
+  background-color: #c2948a;
   width: 50%;
   
   align-items: center;

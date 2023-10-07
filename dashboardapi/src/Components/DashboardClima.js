@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const DashboardClima = styled.div`
-  background-color: oldlace;
+  background-color: transparent;
   display: grid;
   grid-template-columns: 1fr 3fr; /* Primera columna con 1fr y segunda columna con 3fr */
 

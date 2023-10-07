@@ -1,7 +1,7 @@
 import "./App.css";
 import { Highlights } from "./Components/Highlights";
 import DashboardClima from "./Components/DashboardClima";
-import { Today } from "./Components/Today";
+import Thermometer from "./Components/Thermometer";
 import { TempMaxMin } from "./Components/TempMaxMin";
 import Example, { DailyTemp } from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
@@ -10,7 +10,8 @@ function App() {
   return (
     <div className="App">
       <DashboardClima>
-        <Today title="Monday" />
+        <Thermometer />
+
         <Example />
         <TempMaxMin tempMax="18°C" tempMin="6°C" />
         <Highlights
@@ -24,7 +25,6 @@ function App() {
         />
       </DashboardClima>
       <DashboardTrafico>Datos de Trafico</DashboardTrafico>
-     
     </div>
   );
 }
