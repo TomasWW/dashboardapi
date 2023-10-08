@@ -7,28 +7,28 @@ import { FiSunrise } from "react-icons/fi";
 import { FiSunset } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
 import { FcHighPriority } from "react-icons/fc";
-
 import { BsFillCloudFogFill } from "react-icons/bs";
-const Card = styled.div`
-  background-color: #c2948a;
-  border: 1px solid #7ea8be;
-  font-size: calc(5px + 1vmin);
-`;
+
+import Card from "react-bootstrap/Card";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Box = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
   width: 100%;
-  height: 100%;
+
   text-align: center;
-  
 `;
+
 const Title = styled.div`
-  font-size: large;
+  margin: 0;
 `;
-const H3 = styled.h3`
-  margin: auto;
+
+const TomCard = styled(Card)`
+  width: 100%;
+  font-size: calc(1px + 1vh);
+  padding: 0em;
 `;
 export function Highlights({
   uvIndex,
@@ -40,50 +40,67 @@ export function Highlights({
   airQuality,
 }) {
   return (
-    <>
-      <H3>Highlights</H3>
+    <div>
+      <Title>Highlights</Title>
       <Box>
-        <Card>
-          <Title>Indice UV </Title>
-          <p> {uvIndex}</p>
-          <h2>
+        <TomCard border="dark">
+          <Card.Header> UV INDEX </Card.Header>
+          <Card.Body>
+            <Card.Text>{uvIndex}</Card.Text>
             <TbUvIndex />
-          </h2>
-        </Card>
-        <Card>
-          <Title>Vientos</Title>
-          <p>{windStatus}</p>
-          <h2>
+          </Card.Body>
+        </TomCard>
+        <TomCard border="dark">
+          <Card.Header> VIENTOS </Card.Header>
+          <Card.Body>
+            <Card.Text>{windStatus}</Card.Text>
             <WiWindBeaufort5 />
-          </h2>
-        </Card>
-        <Card>
-          <Title> Amanecer / Anocher</Title>
-          <p>
-            {sunrise} <FiSunrise />
-          </p>
-          <p>
-            {sunset} <FiSunset />
-          </p>
-        </Card>
-        <Card>
-          <Title>Humedad</Title>
-          <h3>
-            {humidity}
-            <WiHumidity />
-          </h3>
-        </Card>
-        <Card>
-          <Title>Visibilidad </Title>
-          <p> {visibility}</p>
-          <BsFillCloudFogFill />
-        </Card>
-        <Card>
-          <Title>Calidad Aire </Title>
-          <p> {airQuality}</p>
-          <FcHighPriority />
-        </Card>
+          </Card.Body>
+        </TomCard>
+
+        <TomCard border="dark">
+          <Card.Header> Amanecer / Anocher </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              <p>
+                {sunrise} <FiSunrise />
+              </p>
+              <p>
+                {sunset} <FiSunset />
+              </p>
+            </Card.Text>
+          </Card.Body>
+        </TomCard>
+
+        <TomCard border="dark">
+          <Card.Header> Humedad </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              {humidity}
+              <WiHumidity />
+            </Card.Text>
+          </Card.Body>
+        </TomCard>
+
+        <TomCard border="dark">
+          <Card.Header> Visibilidad </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              {visibility}
+              <BsFillCloudFogFill />
+            </Card.Text>
+          </Card.Body>
+        </TomCard>
+        <TomCard border="dark">
+          <Card.Header> Calidad del Aire </Card.Header>
+          <Card.Body>
+            <Card.Text>
+              {airQuality}
+              <FcHighPriority />
+            </Card.Text>
+          </Card.Body>
+        </TomCard>
       </Box>
-    </>
+    </div>
   );
 }

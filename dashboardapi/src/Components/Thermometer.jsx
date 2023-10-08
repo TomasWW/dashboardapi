@@ -72,7 +72,7 @@ const Line = styled.div`
     left: -1px;
     bottom: 50%;
     right: -1px;
-    background-color: #f6f0ed; /* Cambia el color a #f6f0ed */
+    background-color: #f6f0ed; 
   }
 `;
 
@@ -95,7 +95,10 @@ const Number = styled.div`
   }};
 `;
 
+
+
 export default class Thermometer extends Component {
+
   render() {
     return (
       <MainFrame>
@@ -113,6 +116,7 @@ export default class Thermometer extends Component {
           <CircleTwo />
           <CircleOne />
         </div>
+        <> Martes 18</>
       </MainFrame>
     );
   }

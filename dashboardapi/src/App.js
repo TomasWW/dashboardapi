@@ -10,14 +10,15 @@ function App() {
   return (
     <div className="App">
       <DashboardClima className="dashbordclima">
-        <Thermometer  className="therm"/>
+        <Thermometer className="therm" />
 
-        <DailyTemp  className="chart"/>
+        <DailyTemp className="chart" />
+
         <TempMaxMin className="maxmin" tempMax="18°C" tempMin="6°C" />
-        <fot>
-        <Highlights 
+
+        <Highlights
+          className="cards"
           uvIndex="UV 1 "
-          
           sunrise="6am"
           sunset="20pm"
           humidity="30"
@@ -25,7 +26,6 @@ function App() {
           airQuality="105 Malo"
           windStatus="Fuertes"
         />
-        </fot>
       </DashboardClima>
       <DashboardTrafico>Datos de Tráfico</DashboardTrafico>
     </div>
