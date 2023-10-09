@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-
+import climaApi from "./climaApi";
 const MainFrame = styled.div`
   width: 300px;
   height: 200px;
@@ -72,7 +72,7 @@ const Line = styled.div`
     left: -1px;
     bottom: 50%;
     right: -1px;
-    background-color: #f6f0ed; 
+    background-color: #f6f0ed;
   }
 `;
 
@@ -95,28 +95,31 @@ const Number = styled.div`
   }};
 `;
 
-
-
+const currentTemp = climaApi.current_weather.temperature;
+const currentDay = climaApi.current_weather.time;
+const currentUnits = climaApi.hourly_units;
 export default class Thermometer extends Component {
-
   render() {
     return (
       <MainFrame>
         <div>
-          <Line rotation="190deg" />
-          <Number rotation="-90">-10</Number>
-          <Number rotation="-70">-5</Number>
-          <Number rotation="-50">0</Number>
-          <Number rotation="-30">5</Number>
-          <Number rotation="-10">10</Number>
-          <Number rotation="10">15</Number>
-          <Number rotation="30">20</Number>
-          <Number rotation="50">25</Number>
-          <Number rotation="80">30</Number>
+          <Line rotation={`${((currentTemp - -10) / (30 - -10)) * 260}deg`} />   {/* Falta calibrar la linea de acuerdo a la temperatura */}
+          <Number rotation="-90">-5</Number>
+          <Number rotation="-70">0</Number>
+          <Number rotation="-50">10</Number>
+          <Number rotation="-30">15</Number>
+          <Number rotation="-10">20</Number>
+          <Number rotation="10">25</Number>
+          <Number rotation="30">30</Number>
+          <Number rotation="50">35</Number>
+          <Number rotation="80">40</Number>
           <CircleTwo />
           <CircleOne />
         </div>
-        <> Martes 18</>
+        <>{currentDay}</>
+        <p>
+          {currentTemp} {currentUnits.temperature_2m}
+        </p>
       </MainFrame>
     );
   }
