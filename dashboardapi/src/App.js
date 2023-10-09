@@ -14,7 +14,7 @@ function App() {
 
         <DailyTemp className="chart" />
 
-        <TempMaxMin className="maxmin" tempMax="18°C" tempMin="6°C" />
+        <TempMaxMin className="maxmin"  tempMin="6°C" />
 
         <Highlights
           className="cards"

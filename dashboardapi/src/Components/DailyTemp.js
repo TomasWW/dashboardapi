@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components";
-
+import climaJson from "./climaApi"
 import {
   BarChart,
   Bar,
