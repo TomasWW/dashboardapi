@@ -8,7 +8,6 @@ import { FiSunset } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
 import { FcHighPriority } from "react-icons/fc";
 import { BsFillCloudFogFill } from "react-icons/bs";
-
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -30,6 +29,7 @@ const TomCard = styled(Card)`
   font-size: calc(1px + 1vh);
   padding: 0em;
 `;
+
 export function Highlights({
   uvIndex,
   windStatus,
@@ -44,14 +44,17 @@ export function Highlights({
       <Title>Highlights</Title>
       <Box>
         <TomCard border="dark">
-          <Card.Header> UV INDEX </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>
+            {" "}
+            UV INDEX{" "}
+          </Card.Header>
           <Card.Body>
             <Card.Text>{uvIndex}</Card.Text>
             <TbUvIndex />
           </Card.Body>
         </TomCard>
         <TomCard border="dark">
-          <Card.Header> VIENTOS </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}> VIENTOS </Card.Header>
           <Card.Body>
             <Card.Text>{windStatus}</Card.Text>
             <WiWindBeaufort5 />
@@ -59,7 +62,10 @@ export function Highlights({
         </TomCard>
 
         <TomCard border="dark">
-          <Card.Header> Amanecer / Anocher </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>
+            {" "}
+            Amanecer / Anocher{" "}
+          </Card.Header>
           <Card.Body>
             <Card.Text>
               <p>
@@ -73,7 +79,7 @@ export function Highlights({
         </TomCard>
 
         <TomCard border="dark">
-          <Card.Header> Humedad </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}> Humedad </Card.Header>
           <Card.Body>
             <Card.Text>
               {humidity}
@@ -83,7 +89,10 @@ export function Highlights({
         </TomCard>
 
         <TomCard border="dark">
-          <Card.Header> Visibilidad </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>
+            {" "}
+            Visibilidad{" "}
+          </Card.Header>
           <Card.Body>
             <Card.Text>
               {visibility}
@@ -92,7 +101,10 @@ export function Highlights({
           </Card.Body>
         </TomCard>
         <TomCard border="dark">
-          <Card.Header> Calidad del Aire </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>
+            {" "}
+            Calidad del Aire{" "}
+          </Card.Header>
           <Card.Body>
             <Card.Text>
               {airQuality}
