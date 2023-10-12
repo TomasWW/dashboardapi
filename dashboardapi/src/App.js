@@ -2,19 +2,22 @@ import "./App.css";
 import { Highlights } from "./Components/Highlights";
 import DashboardClima from "./Components/DashboardClima";
 import Thermometer from "./Components/Thermometer";
-import { TempMaxMin } from "./Components/TempMaxMin";
+import CurrentWeather from "./Components/CurrentWeather";
 import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
+
+
+
+
 
 function App() {
   return (
     <div className="App">
       <DashboardClima className="dashbordclima">
-        <Thermometer className="therm" />
+        <Thermometer className="therm" currentTemp={15} />
 
         <DailyTemp className="chart" />
-
-        <TempMaxMin className="maxmin"  tempMin="6°C" />
+        <CurrentWeather className="maxmin" tempMin="6°C" />
 
         <Highlights
           className="cards"

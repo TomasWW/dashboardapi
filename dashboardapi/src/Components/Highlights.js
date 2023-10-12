@@ -1,16 +1,19 @@
 import { useState } from "react";
 import React from "react";
 import styled from "styled-components";
+
 import { TbUvIndex } from "react-icons/tb";
 import { WiWindBeaufort5 } from "react-icons/wi";
 import { FiSunrise } from "react-icons/fi";
 import { FiSunset } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
-import { FcHighPriority } from "react-icons/fc";
 import { BsFillCloudFogFill } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import datosApi from "../Components/climaApi"
+import datosApi from "../Components/climaApi";
+import { FaTemperatureArrowUp } from "react-icons/fa6";
+import { FaTemperatureArrowDown } from "react-icons/fa6";
+
 const Box = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -37,15 +40,15 @@ export function Highlights({
   sunset,
   humidity,
   visibility,
-  airQuality,
-})
-
-
-{
-  const apiUvIndex = datosApi["daily"]["uv_index_max"]
-  const apiWind = datosApi["daily"]["windspeed_10m_max"]
-  const apiSunset = datosApi["daily"]["sunset"]
-  const apiSunrise = datosApi["daily"]["sunrise"]
+  tempMax,
+  tempMin,
+}) {
+  const apiUvIndex = datosApi["daily"]["uv_index_max"];
+  const apiWind = datosApi["daily"]["windspeed_10m_max"];
+  const apiSunset = datosApi["daily"]["sunset"];
+  const apiSunrise = datosApi["daily"]["sunrise"];
+  const apiTempMax = datosApi["daily"]["temperature_2m_max"];
+  const apiTempMin = datosApi["daily"]["temperature_2m_min"];
 
   return (
     <div>
@@ -57,14 +60,14 @@ export function Highlights({
             UV INDEX{" "}
           </Card.Header>
           <Card.Body>
-            <Card.Text>{uvIndex = apiUvIndex }</Card.Text>
+            <Card.Text>{(uvIndex = apiUvIndex)}</Card.Text>
             <TbUvIndex />
           </Card.Body>
         </TomCard>
         <TomCard border="dark">
           <Card.Header style={{ background: "#BBB193" }}> VIENTOS </Card.Header>
           <Card.Body>
-            <Card.Text>{windStatus =apiWind }</Card.Text>
+            <Card.Text>{(windStatus = apiWind)}</Card.Text>
             <WiWindBeaufort5 />
           </Card.Body>
         </TomCard>
@@ -77,10 +80,10 @@ export function Highlights({
           <Card.Body>
             <Card.Text>
               <p>
-                {sunrise = apiSunrise} <FiSunrise />
+                {(sunrise = apiSunrise)} <FiSunrise />
               </p>
               <p>
-                {sunset = apiSunset} <FiSunset />
+                {(sunset = apiSunset)} <FiSunset />
               </p>
             </Card.Text>
           </Card.Body>
@@ -110,13 +113,16 @@ export function Highlights({
         </TomCard>
         <TomCard border="dark">
           <Card.Header style={{ background: "#BBB193" }}>
-            {" "}
-            Calidad del Aire{" "}
+            Temperatura
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              {airQuality}
-              <FcHighPriority />
+              <p>
+                Max {(tempMax = apiTempMax)} <FaTemperatureArrowUp />
+              </p>
+              <p>
+                Min {(tempMin = apiTempMin)} <FaTemperatureArrowDown />
+              </p>
             </Card.Text>
           </Card.Body>
         </TomCard>
