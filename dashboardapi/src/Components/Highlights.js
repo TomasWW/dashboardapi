@@ -1,7 +1,6 @@
-import { useState } from "react";
+
 import React from "react";
 import styled from "styled-components";
-
 import { TbUvIndex } from "react-icons/tb";
 import { WiWindBeaufort5 } from "react-icons/wi";
 import { FiSunrise } from "react-icons/fi";

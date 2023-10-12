@@ -10,7 +10,7 @@ const datosApi = {
     temperature: 12.7,
     windspeed: 18.6,
     winddirection: 261,
-    weathercode: 2,
+    weathercode: 61,
     is_day: 0,
     time: "2023-10-03T21:30",
   },
