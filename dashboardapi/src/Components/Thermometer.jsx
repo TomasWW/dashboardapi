@@ -6,7 +6,7 @@ function ThermometerComponent({currentTemp}) {
       theme="white"
       value={currentTemp}
       max="45"
-      steps="4"
+      steps="3"
       format="°C"
       size="small"
       height=""
