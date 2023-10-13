@@ -1,4 +1,3 @@
-
 import React from "react";
 import styled from "styled-components";
 import { TbUvIndex } from "react-icons/tb";
@@ -42,12 +41,7 @@ export function Highlights({
   tempMax,
   tempMin,
 }) {
-  const apiUvIndex = datosApi["daily"]["uv_index_max"];
-  const apiWind = datosApi["daily"]["windspeed_10m_max"];
-  const apiSunset = datosApi["daily"]["sunset"];
-  const apiSunrise = datosApi["daily"]["sunrise"];
-  const apiTempMax = datosApi["daily"]["temperature_2m_max"];
-  const apiTempMin = datosApi["daily"]["temperature_2m_min"];
+  
 
   return (
     <div>
@@ -59,14 +53,14 @@ export function Highlights({
             UV INDEX{" "}
           </Card.Header>
           <Card.Body>
-            <Card.Text>{(uvIndex = apiUvIndex)}</Card.Text>
+            <Card.Text>{uvIndex}</Card.Text>
             <TbUvIndex />
           </Card.Body>
         </TomCard>
         <TomCard border="dark">
-          <Card.Header style={{ background: "#BBB193" }}> VIENTOS </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}> VIENTO </Card.Header>
           <Card.Body>
-            <Card.Text>{(windStatus = apiWind)}</Card.Text>
+            <Card.Text>{windStatus}</Card.Text>
             <WiWindBeaufort5 />
           </Card.Body>
         </TomCard>
@@ -79,10 +73,10 @@ export function Highlights({
           <Card.Body>
             <Card.Text>
               <p>
-                {(sunrise = apiSunrise)} <FiSunrise />
+                {sunrise} <FiSunrise />
               </p>
               <p>
-                {(sunset = apiSunset)} <FiSunset />
+                {sunset} <FiSunset />
               </p>
             </Card.Text>
           </Card.Body>
@@ -117,10 +111,10 @@ export function Highlights({
           <Card.Body>
             <Card.Text>
               <p>
-                Max {(tempMax = apiTempMax)} <FaTemperatureArrowUp />
+                Max {tempMax} <FaTemperatureArrowUp />
               </p>
               <p>
-                Min {(tempMin = apiTempMin)} <FaTemperatureArrowDown />
+                Min {tempMin} <FaTemperatureArrowDown />
               </p>
             </Card.Text>
           </Card.Body>

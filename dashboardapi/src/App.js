@@ -9,7 +9,7 @@ import "./App.css";
 async function fetchData() {
   try {
     const response = await fetch(
-      "https://api.open-meteo.com/v1/dwd-icon?latitude=52.52&longitude=13.41&current=temperature_2m,relativehumidity_2m,weathercode,windspeed_10m&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=America%2FSao_Paulo&forecast_days=1"
+      "https://api.open-meteo.com/v1/forecast?latitude=-32.9468&longitude=-60.6393&current=temperature_2m,relativehumidity_2m,precipitation,weathercode,windspeed_10m&hourly=temperature_2m,visibility&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=America%2FSao_Paulo&forecast_days=1"
     );
     if (!response.ok) {
       throw new Error("Error al obtener datos de la API");
@@ -58,13 +58,16 @@ function App() {
 
         <Highlights
           className="cards"
-          uvIndex="UV 1 "
-          sunrise="6am"
-          sunset="20pm"
-          humidity="30"
-          visibility="Baja"
-          airQuality="105 Malo"
-          windStatus="Fuertes"
+          uvIndex={weatherData && weatherData["daily"]["uv_index_max"]}
+          sunrise={weatherData && weatherData["daily"]["sunrise"]}
+          sunset={weatherData && weatherData["daily"]["sunset"]}
+          windStatus={weatherData && weatherData["current"]["windspeed_10m"]}
+          visibility={weatherData && weatherData["hourly"]["visibility"][0]}
+          tempMax={weatherData && weatherData["daily"]["temperature_2m_max"]}
+          tempMin={weatherData && weatherData["daily"]["temperature_2m_min"]}
+          humidity={
+            weatherData && weatherData["current"]["relativehumidity_2m"]
+          }
         />
       </DashboardClima>
       <DashboardTrafico>Datos de Tráfico</DashboardTrafico>
