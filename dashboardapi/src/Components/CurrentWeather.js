@@ -33,18 +33,17 @@ function formatDateTime(inputTime) {
   return `${dateStr} ${timeStr}`;
 }
 
-function CurrentWeather() {
-  const apiCurrentWeather = datosApi["current_weather"]["weathercode"];
-  const apiCurrentTime = datosApi["current_weather"]["time"];
-  const apiCurrentTemp = datosApi["current_weather"]["temperature"];
-  const codeWeather = weatherCodeInfo[apiCurrentWeather].name;
-  const logoWeather = weatherCodeInfo[apiCurrentWeather].image_src;
-  const currentDateTime = formatDateTime(apiCurrentTime);
+function CurrentWeather({ currentTemp, apiCurrentWeather, apiCurrentDateTime }) {
+  
+  const codeWeatherInfo = weatherCodeInfo[apiCurrentWeather];
+  const codeWeather = codeWeatherInfo ? codeWeatherInfo.name : "Desconocido";
+  const logoWeather = codeWeatherInfo ? codeWeatherInfo.image_src : "";
+  const currentDateTime = formatDateTime(apiCurrentDateTime);
   return (
     <Weather>
       <p>{currentDateTime}</p>
       <img src={logoWeather} alt="Img" width={"25%"} />
-      {codeWeather} {apiCurrentTemp}
+      {codeWeather} <p>{currentTemp} °C</p>
     </Weather>
   );
 }

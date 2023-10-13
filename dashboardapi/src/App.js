@@ -43,7 +43,13 @@ function App() {
           currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
         />
         <DailyTemp className="chart" />
-        <CurrentWeather className="maxmin" tempMin="6°C" />
+        <CurrentWeather
+          className="maxmin"
+          currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
+          apiCurrentWeather = {weatherData && weatherData["current"]["weathercode"]}
+          apiCurrentDateTime = {weatherData && weatherData["current"]["time"]}
+
+        />
 
         <Highlights
           className="cards"
