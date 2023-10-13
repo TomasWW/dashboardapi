@@ -1,5 +1,4 @@
 import React from "react";
-import datosApi from "./climaApi";
 import styled from "styled-components";
 import weatherCodeInfo from "./weathercode";
 
@@ -33,8 +32,7 @@ function formatDateTime(inputTime) {
   return `${dateStr} ${timeStr}`;
 }
 
-function CurrentWeather({ currentTemp, apiCurrentWeather, apiCurrentDateTime }) {
-  
+function CurrentWeather({ apiCurrentWeather, apiCurrentDateTime }) {
   const codeWeatherInfo = weatherCodeInfo[apiCurrentWeather];
   const codeWeather = codeWeatherInfo ? codeWeatherInfo.name : "Desconocido";
   const logoWeather = codeWeatherInfo ? codeWeatherInfo.image_src : "";
@@ -42,8 +40,8 @@ function CurrentWeather({ currentTemp, apiCurrentWeather, apiCurrentDateTime }) 
   return (
     <Weather>
       <p>{currentDateTime}</p>
+      {codeWeather}
       <img src={logoWeather} alt="Img" width={"25%"} />
-      {codeWeather} <p>{currentTemp} °C</p>
     </Weather>
   );
 }

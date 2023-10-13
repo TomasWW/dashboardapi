@@ -42,13 +42,18 @@ function App() {
           className="therm"
           currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
         />
-        <DailyTemp className="chart" />
+        <DailyTemp
+          className="chart"
+          apiHourlyTime={weatherData && weatherData["hourly"]["time"]}
+          apiHourlyTemp={weatherData && weatherData["hourly"]["temperature_2m"]}
+        />
         <CurrentWeather
           className="maxmin"
           currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
-          apiCurrentWeather = {weatherData && weatherData["current"]["weathercode"]}
-          apiCurrentDateTime = {weatherData && weatherData["current"]["time"]}
-
+          apiCurrentWeather={
+            weatherData && weatherData["current"]["weathercode"]
+          }
+          apiCurrentDateTime={weatherData && weatherData["current"]["time"]}
         />
 
         <Highlights

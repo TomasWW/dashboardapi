@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import styled from "styled-components";
-import climaApi from "./climaApi";
+
 import {
   BarChart,
   Bar,
@@ -16,22 +15,28 @@ export default class DailyTemp extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      data: [], // Inicializamos data como un array vacío
+      data: [],
     };
   }
 
   componentDidMount() {
-    // Extraemos los datos de temperaturas horarias de climaApi dentro de componentDidMount
-    const hourlyTemperatures = climaApi.hourly.temperature_2m;
+    const { apiHourlyTime, apiHourlyTemp } = this.props;
 
-    // Creamos un nuevo array de objetos que contiene el horario y la temperatura
-    const newData = climaApi.hourly.time.map((time, index) => ({
-      name: this.formatTime(time),
-      Temperatura: hourlyTemperatures[index],
-    }));
+    if (
+      apiHourlyTemp &&
+      apiHourlyTemp.length > 0 &&
+      apiHourlyTime &&
+      apiHourlyTime.length > 0
+    ) {
+      const hourlyTemperatures = apiHourlyTemp;
 
-    // Actualizamos el estado con los nuevos datos
-    this.setState({ data: newData });
+      const newData = apiHourlyTime.map((time, index) => ({
+        name: this.formatTime(time),
+        Temperatura: hourlyTemperatures[index],
+      }));
+
+      this.setState({ data: newData });
+    }
   }
   formatTime(time) {
     const date = new Date(time);
@@ -43,7 +48,7 @@ export default class DailyTemp extends PureComponent {
         <BarChart
           width={500}
           height={300}
-          data={this.state.data} // Usamos this.state.data en lugar de data
+          data={this.state.data}
           margin={{
             top: 5,
             right: 30,
