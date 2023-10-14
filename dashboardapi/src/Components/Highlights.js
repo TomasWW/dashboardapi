@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { TbUvIndex } from "react-icons/tb";
-import { WiWindBeaufort5 } from "react-icons/wi";
 
+import GREENCODE from "../assets/code-green.svg";
+import ORANGECODE from "../assets/code-orange.svg";
+import REDCODE from "../assets/code-red.svg";
 import HUMIDITY from "../assets/humidity.svg";
 import SUNRISE from "../assets/sunrise.svg";
 import SUNSET from "../assets/sunset.svg";
@@ -10,7 +12,7 @@ import WIND0 from "../assets/wind-beaufort-0.svg";
 import WIND1 from "../assets/wind-beaufort-1.svg";
 import WIND5 from "../assets/wind-beaufort-5.svg";
 import WIND10 from "../assets/wind-beaufort-10.svg";
-import { BsFillCloudFogFill } from "react-icons/bs";
+
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FaTemperatureArrowUp } from "react-icons/fa6";
@@ -41,11 +43,19 @@ const selectWindImage = (windStatus) => {
     return WIND1;
   } else if (windStatus === 5) {
     return WIND5;
-  } else if (windStatus > 10) {
+  } else if (windStatus >= 10) {
     return WIND10;
   }
   return null;
 };
+const visibilityOp = (visibility) => {
+  if (visibility >= 1000) {
+    return GREENCODE;
+  } else if (visibility < 1000 && visibility >= 500) {
+    return ORANGECODE;
+  } else if (visibility < 500) return REDCODE;
+};
+
 export function Highlights({
   uvIndex,
   windStatus,
@@ -57,6 +67,7 @@ export function Highlights({
   tempMin,
 }) {
   const windImage = selectWindImage(windStatus);
+  const visibilityImg = visibilityOp(visibility);
   return (
     <div>
       <Title>Highlights</Title>
@@ -112,8 +123,7 @@ export function Highlights({
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              {visibility}
-              <BsFillCloudFogFill />
+              <img src={visibilityImg} alt="Vis" width={"25%"} />
             </Card.Text>
           </Card.Body>
         </TomCard>
