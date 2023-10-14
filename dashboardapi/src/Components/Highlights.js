@@ -2,13 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { TbUvIndex } from "react-icons/tb";
 import { WiWindBeaufort5 } from "react-icons/wi";
-import { FiSunrise } from "react-icons/fi";
-import { FiSunset } from "react-icons/fi";
-import { WiHumidity } from "react-icons/wi";
+
+import HUMIDITY from "../assets/humidity.svg";
+import SUNRISE from "../assets/sunrise.svg";
+import SUNSET from "../assets/sunset.svg";
+import WIND0 from "../assets/wind-beaufort-0.svg";
+import WIND1 from "../assets/wind-beaufort-1.svg";
+import WIND5 from "../assets/wind-beaufort-5.svg";
+import WIND10 from "../assets/wind-beaufort-10.svg";
 import { BsFillCloudFogFill } from "react-icons/bs";
 import Card from "react-bootstrap/Card";
 import "bootstrap/dist/css/bootstrap.min.css";
-import datosApi from "../Components/climaApi";
 import { FaTemperatureArrowUp } from "react-icons/fa6";
 import { FaTemperatureArrowDown } from "react-icons/fa6";
 
@@ -27,10 +31,21 @@ const Title = styled.div`
 
 const TomCard = styled(Card)`
   width: 100%;
-  font-size: calc(1px + 1vh);
+  font-size: calc(10px + 1vh);
   padding: 0em;
 `;
-
+const selectWindImage = (windStatus) => {
+  if (windStatus === 0) {
+    return WIND0;
+  } else if (windStatus >= 1 && windStatus < 5) {
+    return WIND1;
+  } else if (windStatus === 5) {
+    return WIND5;
+  } else if (windStatus > 10) {
+    return WIND10;
+  }
+  return null;
+};
 export function Highlights({
   uvIndex,
   windStatus,
@@ -41,8 +56,7 @@ export function Highlights({
   tempMax,
   tempMin,
 }) {
-  
-
+  const windImage = selectWindImage(windStatus);
   return (
     <div>
       <Title>Highlights</Title>
@@ -61,7 +75,7 @@ export function Highlights({
           <Card.Header style={{ background: "#BBB193" }}> VIENTO </Card.Header>
           <Card.Body>
             <Card.Text>{windStatus}</Card.Text>
-            <WiWindBeaufort5 />
+            <img src={windImage} alt="Wind" width={"25%"} />
           </Card.Body>
         </TomCard>
 
@@ -73,10 +87,10 @@ export function Highlights({
           <Card.Body>
             <Card.Text>
               <p>
-                {sunrise} <FiSunrise />
+                {sunrise} <img src={SUNRISE} alt="Sunrise" width={"25%"} />
               </p>
               <p>
-                {sunset} <FiSunset />
+                {sunset} <img src={SUNSET} alt="sunset" width={"25%"} />
               </p>
             </Card.Text>
           </Card.Body>
@@ -86,8 +100,7 @@ export function Highlights({
           <Card.Header style={{ background: "#BBB193" }}> Humedad </Card.Header>
           <Card.Body>
             <Card.Text>
-              {humidity}
-              <WiHumidity />
+              {humidity} <img src={HUMIDITY} alt="Humidity" width={"25%"} />
             </Card.Text>
           </Card.Body>
         </TomCard>
