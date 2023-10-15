@@ -6,6 +6,7 @@ import CurrentWeather from "./Components/CurrentWeather";
 import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
+// Función asincrónica para obtener datos del clima desde la API
 async function fetchData() {
   try {
     const response = await fetch(

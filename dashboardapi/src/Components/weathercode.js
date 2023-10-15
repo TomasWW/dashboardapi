@@ -1,6 +1,6 @@
 const weatherCodeInfo = {
   0: {
-    name: "despejado",
+    name: "Despejado",
     image_src:
       "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/clear-day.svg",
   },
@@ -89,7 +89,7 @@ const weatherCodeInfo = {
     image_src: "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/snow.svg",
   },
   80: {
-    name: "tormenta ligera",
+    name: "Tormenta ligera",
     image_src:
       "https://bmcdn.nl/assets/weather-icons/v3.0/fill/svg/thunderstorms-rain.svg",
   },
