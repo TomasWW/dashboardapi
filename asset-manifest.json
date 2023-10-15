@@ -1,15 +1,29 @@
 {
   "files": {
-    "main.css": "/dashboardapi/static/css/main.e0fc1d1d.css",
-    "main.js": "/dashboardapi/static/js/main.cbd26428.js",
+    "main.css": "/dashboardapi/static/css/main.9260a3bb.css",
+    "main.js": "/dashboardapi/static/js/main.256f1971.js",
     "static/js/787.784228e1.chunk.js": "/dashboardapi/static/js/787.784228e1.chunk.js",
+    "static/media/uv-index-5.svg": "/dashboardapi/static/media/uv-index-5.081732ec30883aaa6c6dbd8a8e2a0317.svg",
+    "static/media/uv-index-10.svg": "/dashboardapi/static/media/uv-index-10.e09bf0ce3d88767a3bf3fc5a401e29ae.svg",
+    "static/media/humidity.svg": "/dashboardapi/static/media/humidity.c3c16dce4ce19a542ebff524b20d3aa3.svg",
+    "static/media/uv-index.svg": "/dashboardapi/static/media/uv-index.10fec5a7cbc2ac9980fa2aab2952c069.svg",
+    "static/media/uv-index-1.svg": "/dashboardapi/static/media/uv-index-1.d1e576035914bb41dc6d30a0c8952638.svg",
+    "static/media/wind-beaufort-5.svg": "/dashboardapi/static/media/wind-beaufort-5.ca9f44072c90f9189dcc24aae2545fcd.svg",
+    "static/media/wind-beaufort-10.svg": "/dashboardapi/static/media/wind-beaufort-10.bb6b0e358384228562153e6c94489e85.svg",
+    "static/media/sunset.svg": "/dashboardapi/static/media/sunset.157f48203d0404bc6d0df78e0ca09207.svg",
+    "static/media/sunrise.svg": "/dashboardapi/static/media/sunrise.cf394e2cd215dd1dc87a314248d27838.svg",
+    "static/media/wind-beaufort-1.svg": "/dashboardapi/static/media/wind-beaufort-1.2ec411059b10deec8ff6b298aafd66fa.svg",
+    "static/media/wind-beaufort-0.svg": "/dashboardapi/static/media/wind-beaufort-0.e7b3baeb3a78e1547ad13c15997fffe7.svg",
+    "static/media/code-green.svg": "/dashboardapi/static/media/code-green.ed65ff239ea912a9cd8af5bdf45aca0c.svg",
+    "static/media/code-orange.svg": "/dashboardapi/static/media/code-orange.ef7e9fad588a802943fa4f9e06c81a77.svg",
+    "static/media/code-red.svg": "/dashboardapi/static/media/code-red.374a270c833755fdc56b47d7cd0555c8.svg",
     "index.html": "/dashboardapi/index.html",
-    "main.e0fc1d1d.css.map": "/dashboardapi/static/css/main.e0fc1d1d.css.map",
-    "main.cbd26428.js.map": "/dashboardapi/static/js/main.cbd26428.js.map",
+    "main.9260a3bb.css.map": "/dashboardapi/static/css/main.9260a3bb.css.map",
+    "main.256f1971.js.map": "/dashboardapi/static/js/main.256f1971.js.map",
     "787.784228e1.chunk.js.map": "/dashboardapi/static/js/787.784228e1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0fc1d1d.css",
-    "static/js/main.cbd26428.js"
+    "static/css/main.9260a3bb.css",
+    "static/js/main.256f1971.js"
   ]
 }
