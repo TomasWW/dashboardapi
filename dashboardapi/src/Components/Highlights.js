@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import weatherCodeInfo from "./weathercode";  // Importa información de códigos de clima
 
 // Importa imágenes y otros componentes necesarios
 import GREENCODE from "../assets/code-green.svg";

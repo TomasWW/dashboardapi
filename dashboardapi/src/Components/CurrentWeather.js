@@ -45,11 +45,10 @@ function CurrentWeather({ apiCurrentWeather, apiCurrentDateTime }) {
 
   return (
     <Weather>
-     
       <p>{currentDateTime}</p>
-     
+
       {codeWeather}
-      
+
       <img src={logoWeather} alt="Img" width={"25%"} />
     </Weather>
   );
