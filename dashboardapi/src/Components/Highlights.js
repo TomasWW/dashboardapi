@@ -24,8 +24,9 @@ import { FaTemperatureArrowDown } from "react-icons/fa6";
 const Box = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
+  gap: 5px;
   width: 100%;
+  
   text-align: center;
 `;
 
@@ -35,8 +36,8 @@ const Title = styled.div`
 
 const TomCard = styled(Card)`
   width: 100%;
-  height: 100%;
-  font-size: calc(8px + 1vh);
+  height: 85%;
+  font-size: calc(6px + 1vh);
   padding: 0%;
   margin: 0%;
 `;
@@ -79,6 +80,21 @@ const visibilityOp = (visibility) => {
     return REDCODE;
   }
 };
+const airQualityImg = (airQuality) => {
+  if (airQuality <= 20) {
+    return "Buena";
+  } else if (airQuality > 20 && airQuality <= 40) {
+    return "Aceptable";
+  } else if (airQuality > 40 && airQuality <= 50) {
+    return "Moderada";
+  } else if (airQuality > 50 && airQuality <= 100) {
+    return "Mala";
+  } else if (airQuality > 100 && airQuality <= 150) {
+    return "Muy Mala";
+  } else if (airQuality > 150) {
+    return "Extremadamente Mala";
+  }
+};
 
 // Función para formatear la hora desde un objeto de fecha
 function formatTimeFromDate(date) {
@@ -96,6 +112,8 @@ export function Highlights({
   visibility,
   tempMax,
   tempMin,
+  airQuality,
+  airQualityUnits,
 }) {
   const windImage = selectWindImage(windStatus);
   const visibilityImg = visibilityOp(visibility);
@@ -106,10 +124,7 @@ export function Highlights({
       <Title>Rosario</Title>
       <Box>
         <TomCard border="dark">
-          <Card.Header style={{ background: "#BBB193" }}>
-            
-            UV INDEX
-          </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>UV INDEX</Card.Header>
           <Card.Body>
             <Card.Text>
               {uvIndex}
@@ -129,7 +144,6 @@ export function Highlights({
 
         <TomCard border="dark">
           <Card.Header style={{ background: "#BBB193" }}>
-            
             Amanecer / Anocher
           </Card.Header>
           <Card.Body>
@@ -143,23 +157,28 @@ export function Highlights({
         </TomCard>
 
         <TomCard border="dark">
-          <Card.Header style={{ background: "#BBB193" }}> Humedad </Card.Header>
+          <Card.Header style={{ background: "#BBB193" }}>
+            {" "}
+            Humedad / Visibilidad{" "}
+          </Card.Header>
           <Card.Body>
             <Card.Text>
               {humidity} <img src={HUMIDITY} alt="Humidity" width={"25%"} />
+              <br />
+              {parseFloat(visibility) / 1000} Km
+              <img src={visibilityImg} alt="Vis" width={"20%"} />
             </Card.Text>
           </Card.Body>
         </TomCard>
 
         <TomCard border="dark">
           <Card.Header style={{ background: "#BBB193" }}>
-            
-            Visibilidad
+            Calidad del Aire
           </Card.Header>
           <Card.Body>
             <Card.Text>
-              {parseFloat(visibility) / 1000} Km
-              <img src={visibilityImg} alt="Vis" width={"30%"} />
+              {airQuality} {airQualityUnits} <br />
+               {airQualityImg(airQuality)}
             </Card.Text>
           </Card.Body>
         </TomCard>

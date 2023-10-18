@@ -42,10 +42,10 @@ function CurrentWeather({ apiCurrentWeather, apiCurrentDateTime }) {
   const logoWeather = codeWeatherInfo ? codeWeatherInfo.image_src : "";
   // Formatea la fecha y hora actual
   const currentDateTime = formatDateTime(apiCurrentDateTime);
-
+  
   return (
     <Weather>
-      <p>{currentDateTime}</p>
+      <p>{currentDateTime }</p>
 
       {codeWeather}
 
