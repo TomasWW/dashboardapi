@@ -47,10 +47,10 @@ function DailyTemp({ apiHourlyTime, apiHourlyTemp }) {
         height={300}
         data={data}
         margin={{
-          top: 5,
+          top: 10,
           right: 30,
-          left: 20,
-          bottom: 5,
+          left: 10,
+          bottom: 0,
         }}
         barCategoryGap="10%"
         barGap="5%"
