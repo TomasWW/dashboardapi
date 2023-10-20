@@ -48,7 +48,7 @@ const selectWindImage = (windStatus) => {
     return WIND0;
   } else if (windStatus >= 1 && windStatus < 5) {
     return WIND1;
-  } else if (windStatus === 5) {
+  } else if (windStatus >=5 && windStatus < 10) {
     return WIND5;
   } else if (windStatus >= 10) {
     return WIND10;

@@ -13,13 +13,18 @@
 }
 .dashbordclima > chart {
   grid-area: chart;
+  
 }
 .dashbordclima > maxmin {
   grid-area: maxmin;
+  
 }
 .dashbordclima > cards {
   grid-area: cards;
 }
 
-
-
+.leaflet-container {
+  width: 45wh;
+  height: 45vh;
+  margin-top: 10px;
+}
