@@ -50,7 +50,8 @@ async function fetchAirQualityData() {
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
-
+  const [selectedLine, setSelectedLine] = useState(null);
+  console.log("Selected Line in App:", selectedLine);
   useEffect(() => {
     const fetchDataAndSetState = async () => {
       const data = await fetchWeatherData();
@@ -110,10 +111,8 @@ function App() {
           }
         />
       </DashboardClima>
-        <UserChoice/>
-      <DashboardTrafico>
-        
-      </DashboardTrafico>
+      <UserChoice onUserSelect={setSelectedLine} />
+      <DashboardTrafico selectedLine={selectedLine} />
     </div>
   );
 }
