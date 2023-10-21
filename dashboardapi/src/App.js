@@ -51,7 +51,7 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
   const [selectedLine, setSelectedLine] = useState(null);
-  console.log("Selected Line in App:", selectedLine);
+  // console.log("Selected Line in App:", selectedLine);
   useEffect(() => {
     const fetchDataAndSetState = async () => {
       const data = await fetchWeatherData();

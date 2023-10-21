@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import datosTrafico from "./DatosTraficos";
 
 export default function UserChoice({ onUserSelect }) {
@@ -15,7 +15,7 @@ export default function UserChoice({ onUserSelect }) {
 
   const handleUserLine = (event) => {
     const selectedLine = parseInt(event.target.value);
-    console.log("Selected Line:", selectedLine);
+    // console.log("Selected Line:", selectedLine);
     onUserSelect(selectedLine);
   };
   return (
