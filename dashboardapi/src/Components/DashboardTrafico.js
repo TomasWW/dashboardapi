@@ -44,8 +44,13 @@ var busIcon = new Icon({
   popupAnchor: [-15, -76],
 });
 
-const busN63 = datosTrafico.filter((bus) => bus.agency_id === 60);
+const busN60 = datosTrafico.filter((bus) => bus.agency_id === 60);
+const busN59 = datosTrafico.filter((bus) => bus.agency_id === 59);
+
+
+
 function DashboardTrafico() {
+  
   return (
     <MapContainer center={position} zoom={13} scrollWheelZoom={true}>
       <TileLayer
@@ -53,7 +58,7 @@ function DashboardTrafico() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      {busN63.map((item, index) => {
+      {busN60.map((item, index) => {
         return (
           <Marker
             key={index}
@@ -64,6 +69,7 @@ function DashboardTrafico() {
               Linea N°: {item["agency_id"]} Velocidad: {item["speed"]}
             </Popup>
           </Marker>
+          
         );
       })}
     </MapContainer>

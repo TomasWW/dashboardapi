@@ -26,5 +26,6 @@
 .leaflet-container {
   width: 45wh;
   height: 45vh;
+  margin-left: 0px;
   margin-top: 10px;
 }
