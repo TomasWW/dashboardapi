@@ -6,7 +6,7 @@ import CurrentWeather from "./Components/CurrentWeather";
 import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
-import UserChoice from "./Components/UserChoice";
+
 // Función asincrónica para obtener datos del clima desde la API
 async function fetchWeatherData() {
   try {
@@ -50,7 +50,9 @@ async function fetchAirQualityData() {
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
-  const [selectedLine, setSelectedLine] = useState(null);
+  const [selectedLine, setSelectedLine] = useState("")
+
+  
   // console.log("Selected Line in App:", selectedLine);
   useEffect(() => {
     const fetchDataAndSetState = async () => {
@@ -64,6 +66,7 @@ function App() {
       if (airQuality) {
         setAirQualityData(airQuality);
       }
+     
     };
     fetchDataAndSetState();
   }, []);
@@ -111,8 +114,8 @@ function App() {
           }
         />
       </DashboardClima>
-      <UserChoice onUserSelect={setSelectedLine} />
-      <DashboardTrafico selectedLine={selectedLine} />
+    
+      <DashboardTrafico selectedLine={selectedLine} setSelectedLine={setSelectedLine} />
     </div>
   );
 }

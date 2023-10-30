@@ -2,24 +2,22 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import React, { useEffect, useState } from "react";
 import busIconPng from "../assets/bus_icon.png";
-import datosTrafico from "./DatosTraficos";
 
-var busIcon = new Icon({
+const busIcon = new Icon({
   iconUrl: busIconPng,
   iconSize: [20, 38],
   iconAnchor: [10, 20],
   popupAnchor: [0, -20],
 });
 
-function DashboardTrafico({ selectedLine }) {
-  const [userLine, setUserLine] = useState(null);
-  const [center, setCenter] = useState([-34.60376, -58.38162]); // Centro inicial en el obelisco
+function DashboardTrafico({ selectedLine, setSelectedLine }) {
+  const [userLine, setUserLine] = useState([]);
+  const [center, setCenter] = useState([-34.60376, -58.38162]);
 
-  // Función para obtener datos de tráfico
-  async function fetchTrafficData() {
+  const fetchTrafficData = async (routeId) => {
     try {
       const response = await fetch(
-        `https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?agency_id=60&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6`
+        `https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?route_id=${routeId}&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6`
       );
 
       if (!response.ok) {
@@ -27,29 +25,47 @@ function DashboardTrafico({ selectedLine }) {
       }
 
       const data = await response.json();
+      setUserLine(data);
 
-      return data;
+      // Actualiza el centro del mapa con la primera posición en la lista de autobuses
+      if (data.length > 0) {
+        setCenter([data[0].latitude, data[0].longitude]);
+      }
     } catch (error) {
       console.error(error);
-      return null;
     }
-  }
+  };
 
-  // Use useEffect para cargar los datos iniciales
   useEffect(() => {
-    // console.log("All Data:", datosTrafico);
-    const filteredData = datosTrafico.filter(
-      (bus) => bus.agency_id === selectedLine
-    );
-    setUserLine(filteredData);
-    if (filteredData && filteredData.length > 0) {
-      setCenter([filteredData[0].latitude, filteredData[0].longitude]);
-    }
-    // console.log("User Line Data:", filteredData);
+    fetchTrafficData(selectedLine);
+  }, [selectedLine]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchTrafficData(selectedLine);
+    }, 31000);
+    return () => clearInterval(interval);
   }, [selectedLine]);
 
   return (
     <div>
+      <p>Seleccione su Línea:</p>
+      <select
+        value={selectedLine}
+        onChange={(event) => setSelectedLine(event.target.value)}
+      >
+        <option value="">Linea</option>
+        <option value="1468">153A a B° Nuevo</option>
+        <option value="100">152A "A" - a La Boca</option>
+        <option value="2">7A Barrio Policial</option>
+        <option value="1">7A Toma Nueva</option>
+        <option value="556">158A a Nueva Pompeya</option>
+        <option value="1632">148A C - Cementerio</option>
+        <option value="1696">159E 2 hacia C Central</option>
+        <option value="995">372 a Don Bosco - Achaga - B° San Juan</option>
+        <option value="60">281L Ramal L - VUELTA</option>
+      </select>
+
       <MapContainer
         key={center.toString()}
         center={center}
@@ -69,8 +85,10 @@ function DashboardTrafico({ selectedLine }) {
               icon={busIcon}
             >
               <Popup>
-                Linea N°: {item.agency_id} {item.trip_headsign} <br />
-                Velocidad: {item.speed}
+                Línea N°: {item.route_short_name} {item.trip_headsign} <br />
+                Velocidad: {item.speed} <br />
+                Longitud: {item.longitude} <br />
+                Latitud: {item.latitude}
               </Popup>
             </Marker>
           ))
