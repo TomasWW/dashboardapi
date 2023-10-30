@@ -15,9 +15,27 @@ function DashboardTrafico({ selectedLine }) {
   const [userLine, setUserLine] = useState(null);
   const [center, setCenter] = useState([-34.60376, -58.38162]); // Centro inicial en el obelisco
 
-  // console.log("Selected Line in DashboardTrafico:", selectedLine);
-  // console.log(typeof(selectedLine))
-  // useEffect para actuliazr la linea elegida
+  // Función para obtener datos de tráfico
+  async function fetchTrafficData() {
+    try {
+      const response = await fetch(
+        `https://datosabiertos-transporte-apis.buenosaires.gob.ar:443/colectivos/vehiclePositionsSimple?agency_id=60&client_id=cb6b18c84b3b484d98018a791577af52&client_secret=3e3DB105Fbf642Bf88d5eeB8783EE1E6`
+      );
+
+      if (!response.ok) {
+        throw new Error("Error al obtener datos de la API de tráfico");
+      }
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  // Use useEffect para cargar los datos iniciales
   useEffect(() => {
     // console.log("All Data:", datosTrafico);
     const filteredData = datosTrafico.filter(
