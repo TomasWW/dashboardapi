@@ -49,23 +49,6 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
 
   return (
     <div>
-      <p>Seleccione su Línea:</p>
-      <select
-        value={selectedLine}
-        onChange={(event) => setSelectedLine(event.target.value)}
-      >
-        <option value="">Linea</option>
-        <option value="1468">153A a B° Nuevo</option>
-        <option value="100">152A "A" - a La Boca</option>
-        <option value="2">7A Barrio Policial</option>
-        <option value="1">7A Toma Nueva</option>
-        <option value="556">158A a Nueva Pompeya</option>
-        <option value="1632">148A C - Cementerio</option>
-        <option value="1696">159E 2 hacia C Central</option>
-        <option value="995">372 a Don Bosco - Achaga - B° San Juan</option>
-        <option value="60">281L Ramal L - VUELTA</option>
-      </select>
-
       <MapContainer
         key={center.toString()}
         center={center}
@@ -76,7 +59,33 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-
+        <div
+          style={{
+            position: "absolute",
+            top: 10,
+            left: 10,
+            backgroundColor: "transparent",
+            padding: "20px",
+            margin:"20px",
+            zIndex: 1000,
+            borderRadius: "5px",
+          }}
+        >
+          <select
+            value={selectedLine}
+            onChange={(event) => setSelectedLine(event.target.value)}
+          >
+            <option value="">Seleccione su Linea</option>
+            <option value="1468">153A a B° Nuevo</option>
+            <option value="100">152A "A" - a La Boca</option>
+            <option value="2">7A Barrio Policial</option>
+            <option value="1">7A Toma Nueva</option>
+            <option value="556">158A a Nueva Pompeya</option>
+            <option value="1696">159E 2 hacia C Central</option>
+            <option value="995">372 a Don Bosco - Achaga - B° San Juan</option>
+            <option value="60">281L Ramal L - VUELTA</option>
+          </select>
+        </div>
         {userLine ? (
           userLine.map((item, index) => (
             <Marker
