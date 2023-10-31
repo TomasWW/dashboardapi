@@ -99,9 +99,9 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
               icon={item.direction === 0 ? busIcon : busIconRet}
             >
               <Popup>
-                Línea N°: {item.route_short_name} {item.trip_headsign} <br />
-                Velocidad: {item.speed} <br />
-                {item.direction === 0 ? "Ida" : "Vuelta"}
+                Línea N°: {item.route_short_name} -- {item.trip_headsign} <br />
+                {item.direction === 0 ? "Ida" : "Vuelta"}  <br />
+                Velocidad: {Math.round(item.speed)}  Km/h
               </Popup>
             </Marker>
           ))
