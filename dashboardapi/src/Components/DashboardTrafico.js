@@ -2,6 +2,7 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import React, { useEffect, useState } from "react";
 import busIconPng from "../assets/bus_icon.png";
+import busIconPngR from "../assets/bus_icon_R.png"
 
 const busIcon = new Icon({
   iconUrl: busIconPng,
@@ -9,7 +10,12 @@ const busIcon = new Icon({
   iconAnchor: [10, 20],
   popupAnchor: [0, -20],
 });
-
+const busIconRet = new Icon({
+  iconUrl: busIconPngR,
+  iconSize: [20, 38],
+  iconAnchor: [10, 20],
+  popupAnchor: [0, -20],
+});
 function DashboardTrafico({ selectedLine, setSelectedLine }) {
   const [userLine, setUserLine] = useState([]);
   const [center, setCenter] = useState([-34.60376, -58.38162]);
@@ -66,7 +72,7 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
             left: 10,
             backgroundColor: "transparent",
             padding: "20px",
-            margin:"20px",
+            margin: "20px",
             zIndex: 1000,
             borderRadius: "5px",
           }}
@@ -82,7 +88,6 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
             <option value="1">7A Toma Nueva</option>
             <option value="556">158A a Nueva Pompeya</option>
             <option value="1696">159E 2 hacia C Central</option>
-            <option value="995">372 a Don Bosco - Achaga - B° San Juan</option>
             <option value="60">281L Ramal L - VUELTA</option>
           </select>
         </div>
@@ -91,13 +96,12 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
             <Marker
               key={index}
               position={[item.latitude, item.longitude]}
-              icon={busIcon}
+              icon={item.direction === 0 ? busIcon : busIconRet}
             >
               <Popup>
                 Línea N°: {item.route_short_name} {item.trip_headsign} <br />
                 Velocidad: {item.speed} <br />
-                Longitud: {item.longitude} <br />
-                Latitud: {item.latitude}
+                {item.direction === 0 ? "Ida" : "Vuelta"}
               </Popup>
             </Marker>
           ))
