@@ -17,7 +17,35 @@ La aplicación utiliza React para el frontend y se comunica con una API de pron�
    - `CurrentWeather`: Muestra la información actual del clima, como el estado del tiempo y la fecha actual.
    - `Highlights`: Muestra datos destacados como el índice UV, velocidad del viento, humedad, amanecer y atardecer, visibilidad y temperaturas máximas y mínimas.
 
-4. Los datos de tráfico se muestran en el componente `DashboardTrafico`.
+
+
+## Dashboard de Tráfico
+
+El Dashboard de Tráfico es una característica adicional de esta aplicación que muestra la ubicación en tiempo real de autobuses en diferentes rutas de transporte público. Utiliza datos proporcionados por la API de tráfico de Buenos Aires.
+
+### Cómo funciona
+
+1. En el Dashboard de Tráfico, puedes seleccionar una línea de autobús específica de las disponibles en el menú desplegable.
+
+2. Una vez seleccionada una línea, el mapa mostrará la ubicación en tiempo real de los autobuses en esa ruta.
+
+3. Cada autobús se representa con un ícono en el mapa. El ícono cambia según la dirección del viaje. Por ejemplo, se utiliza un ícono de autobús estándar para la "Ida" y un ícono de autobús en espejo para la "Vuelta".
+
+4. Al hacer clic en un ícono de autobús en el mapa, se mostrará información adicional, como el número de línea, el destino, la velocidad y la dirección del viaje.
+
+### Actualización en tiempo real
+
+El Dashboard de Tráfico actualiza automáticamente la ubicación de los autobuses en tiempo real a intervalos regulares para brindarte información actualizada.
+
+### Usando los íconos
+
+Se utilizan dos íconos de autobús para representar la dirección del viaje de cada autobús. Los íconos se muestran en el mapa de la siguiente manera:
+
+- Ícono de autobús estándar para la "Ida" del viaje.
+- Ícono de autobús en espejo para la "Vuelta" del viaje.
+
+Estos íconos ayudan a identificar rápidamente la dirección en la que se desplaza cada autobús.
+
 
 ## Cómo instalar y ejecutar
 

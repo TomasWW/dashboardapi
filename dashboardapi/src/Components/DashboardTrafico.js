@@ -3,13 +3,15 @@ import { Icon } from "leaflet";
 import React, { useEffect, useState } from "react";
 import busIconPng from "../assets/bus_icon.png";
 import busIconPngR from "../assets/bus_icon_R.png"
-
+//Icono de Bus para la Ida
 const busIcon = new Icon({
   iconUrl: busIconPng,
   iconSize: [20, 38],
   iconAnchor: [10, 20],
   popupAnchor: [0, -20],
 });
+
+//Icono de Bus para la Vuelta
 const busIconRet = new Icon({
   iconUrl: busIconPngR,
   iconSize: [20, 38],
