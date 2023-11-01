@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/dashboardapi/static/css/main.9260a3bb.css",
-    "main.js": "/dashboardapi/static/js/main.c402359b.js",
+    "main.css": "/dashboardapi/static/css/main.3c567739.css",
+    "main.js": "/dashboardapi/static/js/main.cadef782.js",
     "static/js/787.784228e1.chunk.js": "/dashboardapi/static/js/787.784228e1.chunk.js",
     "static/media/uv-index-5.svg": "/dashboardapi/static/media/uv-index-5.081732ec30883aaa6c6dbd8a8e2a0317.svg",
     "static/media/uv-index-10.svg": "/dashboardapi/static/media/uv-index-10.e09bf0ce3d88767a3bf3fc5a401e29ae.svg",
@@ -14,16 +14,16 @@
     "static/media/sunrise.svg": "/dashboardapi/static/media/sunrise.cf394e2cd215dd1dc87a314248d27838.svg",
     "static/media/wind-beaufort-1.svg": "/dashboardapi/static/media/wind-beaufort-1.2ec411059b10deec8ff6b298aafd66fa.svg",
     "static/media/wind-beaufort-0.svg": "/dashboardapi/static/media/wind-beaufort-0.e7b3baeb3a78e1547ad13c15997fffe7.svg",
+    "index.html": "/dashboardapi/index.html",
     "static/media/code-green.svg": "/dashboardapi/static/media/code-green.ed65ff239ea912a9cd8af5bdf45aca0c.svg",
     "static/media/code-orange.svg": "/dashboardapi/static/media/code-orange.ef7e9fad588a802943fa4f9e06c81a77.svg",
     "static/media/code-red.svg": "/dashboardapi/static/media/code-red.374a270c833755fdc56b47d7cd0555c8.svg",
-    "index.html": "/dashboardapi/index.html",
-    "main.9260a3bb.css.map": "/dashboardapi/static/css/main.9260a3bb.css.map",
-    "main.c402359b.js.map": "/dashboardapi/static/js/main.c402359b.js.map",
+    "main.3c567739.css.map": "/dashboardapi/static/css/main.3c567739.css.map",
+    "main.cadef782.js.map": "/dashboardapi/static/js/main.cadef782.js.map",
     "787.784228e1.chunk.js.map": "/dashboardapi/static/js/787.784228e1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.9260a3bb.css",
-    "static/js/main.c402359b.js"
+    "static/css/main.3c567739.css",
+    "static/js/main.cadef782.js"
   ]
 }
