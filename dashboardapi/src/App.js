@@ -6,6 +6,9 @@ import CurrentWeather from "./Components/CurrentWeather";
 import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
+import { Title } from "chart.js";
+
+import WeatherDataComponent from "./Components/WeatherDataComponent"
 
 // Función asincrónica para obtener datos del clima desde la API
 async function fetchWeatherData() {
@@ -50,9 +53,8 @@ async function fetchAirQualityData() {
 function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
-  const [selectedLine, setSelectedLine] = useState("")
+  const [selectedLine, setSelectedLine] = useState("");
 
-  
   // console.log("Selected Line in App:", selectedLine);
   useEffect(() => {
     const fetchDataAndSetState = async () => {
@@ -66,56 +68,67 @@ function App() {
       if (airQuality) {
         setAirQualityData(airQuality);
       }
-     
     };
     fetchDataAndSetState();
   }, []);
 
   // Resto de tu código para renderizar componentes y mostrar datos
-  
-  return (
-    <div className="App">
-      <DashboardClima className="dashbordclima">
-        <Thermometer
-          className="therm"
-          currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
-        />
-        <DailyTemp
-          className="chart"
-          apiHourlyTime={weatherData && weatherData["hourly"]["time"]}
-          apiHourlyTemp={weatherData && weatherData["hourly"]["temperature_2m"]}
-        />
-        <CurrentWeather
-          className="maxmin"
-          currentTemp={weatherData && weatherData["current"]["temperature_2m"]}
-          apiCurrentWeather={
-            weatherData && weatherData["current"]["weathercode"]
-          }
-          apiCurrentDateTime={weatherData && weatherData["current"]["time"]}
-        />
 
-        <Highlights
-          className="cards"
-          uvIndex={weatherData && weatherData["daily"]["uv_index_max"]}
-          sunrise={weatherData && weatherData["daily"]["sunrise"]}
-          sunset={weatherData && weatherData["daily"]["sunset"]}
-          windStatus={weatherData && weatherData["current"]["windspeed_10m"]}
-          visibility={weatherData && weatherData["hourly"]["visibility"][0]}
-          tempMax={weatherData && weatherData["daily"]["temperature_2m_max"]}
-          tempMin={weatherData && weatherData["daily"]["temperature_2m_min"]}
-          humidity={
-            weatherData && weatherData["current"]["relativehumidity_2m"]
-          }
-          airQuality={
-            airQualityData && airQualityData["current"]["european_aqi"]
-          }
-          airQualityUnits={
-            airQualityData && airQualityData["hourly_units"]["pm10"]
-          }
+  return (
+    <div>
+      <WeatherDataComponent/>
+      <div className="App">
+        <DashboardClima className="dashbordclima">
+          <Thermometer
+            className="therm"
+            currentTemp={
+              weatherData && weatherData["current"]["temperature_2m"]
+            }
+          />
+          <DailyTemp
+            className="chart"
+            apiHourlyTime={weatherData && weatherData["hourly"]["time"]}
+            apiHourlyTemp={
+              weatherData && weatherData["hourly"]["temperature_2m"]
+            }
+          />
+          <CurrentWeather
+            className="maxmin"
+            currentTemp={
+              weatherData && weatherData["current"]["temperature_2m"]
+            }
+            apiCurrentWeather={
+              weatherData && weatherData["current"]["weathercode"]
+            }
+            apiCurrentDateTime={weatherData && weatherData["current"]["time"]}
+          />
+
+          <Highlights
+            className="cards"
+            uvIndex={weatherData && weatherData["daily"]["uv_index_max"]}
+            sunrise={weatherData && weatherData["daily"]["sunrise"]}
+            sunset={weatherData && weatherData["daily"]["sunset"]}
+            windStatus={weatherData && weatherData["current"]["windspeed_10m"]}
+            visibility={weatherData && weatherData["hourly"]["visibility"][0]}
+            tempMax={weatherData && weatherData["daily"]["temperature_2m_max"]}
+            tempMin={weatherData && weatherData["daily"]["temperature_2m_min"]}
+            humidity={
+              weatherData && weatherData["current"]["relativehumidity_2m"]
+            }
+            airQuality={
+              airQualityData && airQualityData["current"]["european_aqi"]
+            }
+            airQualityUnits={
+              airQualityData && airQualityData["hourly_units"]["pm10"]
+            }
+          />
+        </DashboardClima>
+
+        <DashboardTrafico
+          selectedLine={selectedLine}
+          setSelectedLine={setSelectedLine}
         />
-      </DashboardClima>
-    
-      <DashboardTrafico selectedLine={selectedLine} setSelectedLine={setSelectedLine} />
+      </div>
     </div>
   );
 }

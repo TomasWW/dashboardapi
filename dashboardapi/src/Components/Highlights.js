@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // Importa imágenes y otros componentes necesarios
@@ -26,7 +26,7 @@ const Box = styled.div`
   grid-template-columns: repeat(6, 1fr);
   gap: 5px;
   width: 100%;
-  
+
   text-align: center;
 `;
 
@@ -48,7 +48,7 @@ const selectWindImage = (windStatus) => {
     return WIND0;
   } else if (windStatus >= 1 && windStatus < 5) {
     return WIND1;
-  } else if (windStatus >=5 && windStatus < 10) {
+  } else if (windStatus >= 5 && windStatus < 10) {
     return WIND5;
   } else if (windStatus >= 10) {
     return WIND10;
@@ -121,7 +121,6 @@ export function Highlights({
 
   return (
     <div>
-      <Title>Rosario</Title>
       <Box>
         <TomCard border="dark">
           <Card.Header style={{ background: "#BBB193" }}>UV INDEX</Card.Header>
@@ -178,7 +177,7 @@ export function Highlights({
           <Card.Body>
             <Card.Text>
               {airQuality} {airQualityUnits} <br />
-               {airQualityImg(airQuality)}
+              {airQualityImg(airQuality)}
             </Card.Text>
           </Card.Body>
         </TomCard>
