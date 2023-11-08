@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-function WeatherDataComponent() {
+function CityDataComponent({ onDataFetched }) {
   const [city, setCity] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null); // Inicialmente establecida en null
   const [weatherData, setWeatherData] = useState(null);
 
   const handleCityChange = (e) => {
@@ -32,17 +32,28 @@ function WeatherDataComponent() {
     }
   };
 
+  const handleCitySelect = (e) => {
+    const selectedIndex = e.target.value;
+    const selectedCityData = weatherData.results[selectedIndex];
+
+    if (selectedCityData) {
+      setSelectedCity(selectedCityData);
+
+      // Obtener latitud y longitud de la ciudad seleccionada
+      const latitude = selectedCityData.latitude;
+      const longitude = selectedCityData.longitude;
+
+      // Llamar a la función para pasar los datos a App
+      onDataFetched(latitude, longitude);
+    }
+  };
+
   useEffect(() => {
     // Puedes realizar acciones adicionales cuando cambie 'weatherData', como mostrar los datos en la interfaz de usuario.
     if (weatherData) {
       console.log("Datos climáticos:", weatherData);
     }
   }, [weatherData]);
-
-  const handleCitySelect = (e) => {
-    const selectedIndex = e.target.value;
-    setSelectedCity(weatherData.results[selectedIndex]);
-  };
 
   return (
     <div>
@@ -61,11 +72,17 @@ function WeatherDataComponent() {
             <option key={index} value={index}>
               {city.name} ({city.country})
             </option>
-      ))}
+          ))}
         </select>
+      )}
+      {selectedCity && (
+        <div>
+          Ciudad seleccionada: {selectedCity.name} ({selectedCity.country})
+          {selectedCity.longitude} {selectedCity.latitude}
+        </div>
       )}
     </div>
   );
 }
 
-export default WeatherDataComponent;
+export default CityDataComponent;

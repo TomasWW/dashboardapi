@@ -6,15 +6,12 @@ import CurrentWeather from "./Components/CurrentWeather";
 import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
-import { Title } from "chart.js";
+import CityDataComponent from "./Components/CityDataComponent";
 
-import WeatherDataComponent from "./Components/WeatherDataComponent"
-
-// Función asincrónica para obtener datos del clima desde la API
-async function fetchWeatherData() {
+async function fetchWeatherData(latitude, longitude) {
   try {
     const response = await fetch(
-      "https://api.open-meteo.com/v1/forecast?latitude=-32.9468&longitude=-60.6393&current=temperature_2m,relativehumidity_2m,precipitation,weathercode,windspeed_10m&hourly=temperature_2m,visibility&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=America%2FSao_Paulo&forecast_days=1"
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relativehumidity_2m,precipitation,weathercode,windspeed_10m&hourly=temperature_2m,visibility&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=America%2FSao_Paulo&forecast_days=1`
     );
 
     if (!response.ok) {
@@ -30,11 +27,10 @@ async function fetchWeatherData() {
   }
 }
 
-// Función asincrónica para obtener datos de la calidad del aire desde la API
-async function fetchAirQualityData() {
+async function fetchAirQualityData(latitude, longitude) {
   try {
     const response = await fetch(
-      "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=-32.9468&longitude=-60.6393&current=european_aqi&hourly=pm10,european_aqi&timezone=America%2FSao_Paulo&forecast_days=1"
+      `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&current=european_aqi&hourly=pm10,european_aqi&timezone=America%2FSao_Paulo&forecast_days=1`
     );
 
     if (!response.ok) {
@@ -54,12 +50,13 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [airQualityData, setAirQualityData] = useState(null);
   const [selectedLine, setSelectedLine] = useState("");
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
 
-  // console.log("Selected Line in App:", selectedLine);
   useEffect(() => {
     const fetchDataAndSetState = async () => {
-      const data = await fetchWeatherData();
-      const airQuality = await fetchAirQualityData();
+      const data = await fetchWeatherData(latitude, longitude);
+      const airQuality = await fetchAirQualityData(latitude, longitude);
 
       if (data) {
         setWeatherData(data);
@@ -70,13 +67,16 @@ function App() {
       }
     };
     fetchDataAndSetState();
-  }, []);
+  }, [latitude, longitude]);
 
-  // Resto de tu código para renderizar componentes y mostrar datos
+  const onDataFetched = (latitude, longitude) => {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  };
 
   return (
     <div>
-      <WeatherDataComponent/>
+      <CityDataComponent onDataFetched={onDataFetched} />
       <div className="App">
         <DashboardClima className="dashbordclima">
           <Thermometer
