@@ -33,8 +33,8 @@
   background-size: 45%;
   background-position: center;
   color: rgb(11, 11, 11);
-  height: 45vh; /* Ocupar toda la altura del viewport */
-  width: 100vw; /* Ocupar toda la anchura del viewport */
+  height: 45vh; 
+  width: 100vw; 
   
   align-items: center;
   justify-content: center;
