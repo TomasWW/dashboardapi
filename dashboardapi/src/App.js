@@ -7,12 +7,11 @@ import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
 import CityDataComponent from "./Components/CityDataComponent";
-import backgroundLoading from "../src/assets/background.jpg"
 
 async function fetchWeatherData(latitude, longitude) {
   try {
     const response = await fetch(
-      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relativehumidity_2m,precipitation,weathercode,windspeed_10m&hourly=temperature_2m,visibility&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&timezone=America%2FSao_Paulo&forecast_days=1`
+      ` https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,is_day,precipitation,weather_code,wind_speed_10m&hourly=temperature_2m,visibility&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max&forecast_days=1`
     );
 
     if (!response.ok) {
@@ -82,7 +81,10 @@ function App() {
 
   return (
     <div>
-      <CityDataComponent onDataFetched={onDataFetched} />
+      <CityDataComponent
+        onDataFetched={onDataFetched}
+        isDay={weatherData && weatherData["current"]["is_day"]}
+      />
       {isLoading ? (
         <div className="loading-indicator">Cargando...</div>
       ) : hasData ? (
@@ -107,7 +109,7 @@ function App() {
                 weatherData && weatherData["current"]["temperature_2m"]
               }
               apiCurrentWeather={
-                weatherData && weatherData["current"]["weathercode"]
+                weatherData && weatherData["current"]["weather_code"]
               }
               apiCurrentDateTime={weatherData && weatherData["current"]["time"]}
             />
@@ -118,7 +120,7 @@ function App() {
               sunrise={weatherData && weatherData["daily"]["sunrise"]}
               sunset={weatherData && weatherData["daily"]["sunset"]}
               windStatus={
-                weatherData && weatherData["current"]["windspeed_10m"]
+                weatherData && weatherData["current"]["wind_speed_10m"]
               }
               visibility={weatherData && weatherData["hourly"]["visibility"][0]}
               tempMax={
@@ -128,7 +130,7 @@ function App() {
                 weatherData && weatherData["daily"]["temperature_2m_min"]
               }
               humidity={
-                weatherData && weatherData["current"]["relativehumidity_2m"]
+                weatherData && weatherData["current"]["relative_humidity_2m"]
               }
               airQuality={
                 airQualityData && airQualityData["current"]["european_aqi"]
@@ -138,7 +140,6 @@ function App() {
               }
             />
           </DashboardClima>
-
         </div>
       ) : (
         // Mostrar solo la selección de ciudad cuando no hay datos
@@ -146,10 +147,10 @@ function App() {
           Seleccione su ciudad para obtener datos de clima.
         </div>
       )}
-          <DashboardTrafico
-            selectedLine={selectedLine}
-            setSelectedLine={setSelectedLine}
-          />
+      <DashboardTrafico
+        selectedLine={selectedLine}
+        setSelectedLine={setSelectedLine}
+      />
     </div>
   );
 }

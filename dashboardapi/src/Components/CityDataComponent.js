@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-
-function CityDataComponent({ onDataFetched }) {
+import { DateTime } from "luxon";
+import isDayImg from "../assets/clear-day.svg";
+import isNightImg from "../assets/moon-last-quarter.svg";
+function CityDataComponent({ onDataFetched, isDay }) {
   const [city, setCity] = useState("");
-  const [selectedCity, setSelectedCity] = useState(null); // Inicialmente establecida en null
+  const [selectedCity, setSelectedCity] = useState(null);
   const [weatherData, setWeatherData] = useState(null);
-
+  const [localTime, setLocalTime] = useState(null);
+  const weatherImage = isDay ? isDayImg : isNightImg;
   const handleCityChange = (e) => {
     setCity(e.target.value);
     fetchWeatherData(city);
@@ -21,7 +24,6 @@ function CityDataComponent({ onDataFetched }) {
       }
 
       const data = await response.json();
-      // Actualiza el estado de 'weatherData' después de recibir los datos
       setWeatherData(data);
     } catch (error) {
       console.error(error);
@@ -35,17 +37,18 @@ function CityDataComponent({ onDataFetched }) {
     if (selectedCityData) {
       setSelectedCity(selectedCityData);
 
-      // Obtener latitud y longitud de la ciudad seleccionada
       const latitude = selectedCityData.latitude;
       const longitude = selectedCityData.longitude;
 
-      // Llamar a la función para pasar los datos a App
+      const localDateTime = DateTime.now().setZone(selectedCityData.timezone);
+
+      setLocalTime(localDateTime);
+
       onDataFetched(latitude, longitude);
     }
   };
 
   useEffect(() => {
-    // Puedes realizar acciones adicionales cuando cambie 'weatherData', como mostrar los datos en la interfaz de usuario.
     if (weatherData) {
       console.log("Datos climáticos:", weatherData);
     }
@@ -75,7 +78,10 @@ function CityDataComponent({ onDataFetched }) {
       )}
       {selectedCity && (
         <div>
-          Ciudad seleccionada: {selectedCity.name} ({selectedCity.country})
+          Ciudad: {selectedCity.name} ({selectedCity.country}) ----{" "}
+          {localTime.toFormat("hh:mm a")}{" "}
+          
+            <img src={weatherImage} alt="Img" width={"2%"} />
           
         </div>
       )}

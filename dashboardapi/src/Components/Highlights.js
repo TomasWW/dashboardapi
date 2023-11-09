@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 // Importa imágenes y otros componentes necesarios
@@ -30,9 +30,7 @@ const Box = styled.div`
   text-align: center;
 `;
 
-const Title = styled.div`
-  margin: 0;
-`;
+
 
 const TomCard = styled(Card)`
   width: 100%;
