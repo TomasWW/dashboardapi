@@ -7,6 +7,7 @@ import DailyTemp from "./Components/DailyTemp";
 import DashboardTrafico from "./Components/DashboardTrafico";
 import "./App.css";
 import CityDataComponent from "./Components/CityDataComponent";
+import backgroundLoading from "../src/assets/background.jpg"
 
 async function fetchWeatherData(latitude, longitude) {
   try {
@@ -53,6 +54,7 @@ function App() {
   const [latitude, setLatitude] = useState(null);
   const [longitude, setLongitude] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     const fetchDataAndSetState = async () => {
       setIsLoading(true);
@@ -75,12 +77,15 @@ function App() {
     setLongitude(longitude);
   };
 
+  // Verificar si no se tienen datos de clima y calidad del aire
+  const hasData = weatherData && airQualityData;
+
   return (
     <div>
       <CityDataComponent onDataFetched={onDataFetched} />
       {isLoading ? (
         <div className="loading-indicator">Cargando...</div>
-      ) : (
+      ) : hasData ? (
         <div className="App">
           <DashboardClima className="dashbordclima">
             <Thermometer
@@ -134,12 +139,17 @@ function App() {
             />
           </DashboardClima>
 
+        </div>
+      ) : (
+        // Mostrar solo la selección de ciudad cuando no hay datos
+        <div className="no-data-background">
+          Seleccione su ciudad para obtener datos de clima.
+        </div>
+      )}
           <DashboardTrafico
             selectedLine={selectedLine}
             setSelectedLine={setSelectedLine}
           />
-        </div>
-      )}
     </div>
   );
 }

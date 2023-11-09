@@ -13,11 +13,9 @@
 }
 .dashbordclima > chart {
   grid-area: chart;
-  
 }
 .dashbordclima > maxmin {
   grid-area: maxmin;
-  
 }
 .dashbordclima > cards {
   grid-area: cards;
@@ -28,4 +26,16 @@
   height: 45vh;
   margin-left: 0px;
   margin-top: 10px;
+}
+.no-data-background {
+  background-image: url("../src/assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: 45%;
+  background-position: center;
+  color: rgb(11, 11, 11);
+  height: 45vh; /* Ocupar toda la altura del viewport */
+  width: 100vw; /* Ocupar toda la anchura del viewport */
+  
+  align-items: center;
+  justify-content: center;
 }
