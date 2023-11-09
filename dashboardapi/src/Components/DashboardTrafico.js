@@ -2,7 +2,9 @@ import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import { Icon } from "leaflet";
 import React, { useEffect, useState } from "react";
 import busIconPng from "../assets/bus_icon.png";
-import busIconPngR from "../assets/bus_icon_R.png"
+import busIconStop from "../assets/redBus.png";
+
+import busIconPngR from "../assets/bus_icon_R.png";
 //Icono de Bus para la Ida
 const busIcon = new Icon({
   iconUrl: busIconPng,
@@ -18,6 +20,15 @@ const busIconRet = new Icon({
   iconAnchor: [10, 20],
   popupAnchor: [0, -20],
 });
+
+// Icono de Bus para Velocidad 0
+const busStop = new Icon({
+  iconUrl: busIconStop, // Cambiado el nombre de la imagen
+  iconSize: [20, 25],
+  iconAnchor: [10, 20],
+  popupAnchor: [0, -20],
+});
+
 function DashboardTrafico({ selectedLine, setSelectedLine }) {
   const [userLine, setUserLine] = useState([]);
   const [center, setCenter] = useState([-34.60376, -58.38162]);
@@ -98,12 +109,18 @@ function DashboardTrafico({ selectedLine, setSelectedLine }) {
             <Marker
               key={index}
               position={[item.latitude, item.longitude]}
-              icon={item.direction === 0 ? busIcon : busIconRet}
+              icon={
+                item.speed === 0
+                  ? busStop
+                  : item.direction === 0
+                  ? busIcon
+                  : busIconRet
+              }
             >
               <Popup>
                 Línea N°: {item.route_short_name} -- {item.trip_headsign} <br />
-                {item.direction === 0 ? "Ida" : "Vuelta"}  <br />
-                Velocidad: {Math.round(item.speed)}  Km/h
+                {item.direction === 0 ? "Ida" : "Vuelta"} <br />
+                Velocidad: {Math.round(item.speed)} Km/h
               </Popup>
             </Marker>
           ))
