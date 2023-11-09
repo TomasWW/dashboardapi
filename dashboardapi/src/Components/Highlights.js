@@ -60,7 +60,7 @@ const selectWindImage = (windStatus) => {
 const selectUVIndexImage = (uvIndex) => {
   if (uvIndex === 0) {
     return UV0;
-  } else if (uvIndex >= 1 && uvIndex < 5) {
+  } else if (uvIndex > 0 && uvIndex < 5) {
     return UV1;
   } else if (uvIndex >= 5 && uvIndex < 10) {
     return UV5;

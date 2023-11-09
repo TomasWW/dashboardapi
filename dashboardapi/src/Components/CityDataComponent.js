@@ -7,17 +7,13 @@ function CityDataComponent({ onDataFetched }) {
 
   const handleCityChange = (e) => {
     setCity(e.target.value);
-  };
-
-  const handleCitySubmit = (e) => {
-    e.preventDefault();
     fetchWeatherData(city);
   };
 
   const fetchWeatherData = async (city) => {
     try {
       const response = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=3&language=es&format=json`
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=5&language=es&format=json`
       );
 
       if (!response.ok) {
@@ -64,10 +60,12 @@ function CityDataComponent({ onDataFetched }) {
         value={city}
         onChange={handleCityChange}
       />
-      <button onClick={handleCitySubmit}>Enviar</button>
 
       {weatherData && weatherData.results && weatherData.results.length > 0 && (
         <select onChange={handleCitySelect}>
+          <option value="" enabled>
+            Selecciona una ciudad
+          </option>
           {weatherData.results.map((city, index) => (
             <option key={index} value={index}>
               {city.name} ({city.country})
@@ -78,7 +76,7 @@ function CityDataComponent({ onDataFetched }) {
       {selectedCity && (
         <div>
           Ciudad seleccionada: {selectedCity.name} ({selectedCity.country})
-          {selectedCity.longitude} {selectedCity.latitude}
+          
         </div>
       )}
     </div>
